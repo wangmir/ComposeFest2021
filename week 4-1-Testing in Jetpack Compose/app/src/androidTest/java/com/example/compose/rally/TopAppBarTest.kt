@@ -28,4 +28,31 @@ class TopAppBarTest {
             useUnmergedTree = true
         ).assertExists()
     }
+
+    @Test
+    fun rallyTopAppBarTest_switchLabelWhenSwitchingTab() {
+        composeTestRule.setContent {
+            RallyApp()
+        }
+
+        composeTestRule.onNode(
+            hasContentDescription(RallyScreen.Overview.name)
+        ).performClick()
+
+        composeTestRule.onNode(
+            hasText(RallyScreen.Overview.name.uppercase()) and
+                    hasParent(hasContentDescription(RallyScreen.Overview.name)),
+            useUnmergedTree = true
+        ).assertExists()
+
+        composeTestRule.onNode(
+            hasContentDescription(RallyScreen.Bills.name)
+        ).performClick()
+
+        composeTestRule.onNode(
+            hasText(RallyScreen.Bills.name.uppercase()) and
+                    hasParent(hasContentDescription(RallyScreen.Bills.name)),
+            useUnmergedTree = true
+        ).assertExists()
+    }
 }
